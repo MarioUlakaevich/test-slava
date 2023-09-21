@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\RowsController;
+
+
+Route::middleware(['auth.basic'])->group(function () {
+    //All the routes are placed in here
+    Route::get('/rows', [RowsController::class, 'getRowsGroupedByDate']);
+    
 });
